@@ -5,6 +5,7 @@ namespace Ebay\Sell\Negotiation\Api;
 use Ebay\Sell\Negotiation\Model\CreateOffersRequest;
 use Ebay\Sell\Negotiation\Model\PagedEligibleItemCollection;
 use Ebay\Sell\Negotiation\Model\SendOfferToInterestedBuyersCollectionResponse;
+use OpenAPI\Runtime\UnexpectedResponse;
 
 class Offer extends AbstractAPI
 {
@@ -34,9 +35,9 @@ class Offer extends AbstractAPI
      *                       search for eligible listings. For a complete list of supported marketplaces, see
      *                       Negotiation API requirements and restrictions.
      *
-     * @return PagedEligibleItemCollection
+     * @return PagedEligibleItemCollection|UnexpectedResponse
      */
-    public function findEligibleItems(array $queries = [], array $headers = []): PagedEligibleItemCollection
+    public function findEligibleItems(array $queries = [], array $headers = [])
     {
         return $this->request(
         'findEligibleItems',
@@ -65,9 +66,9 @@ class Offer extends AbstractAPI
      *                                     with &quot;eligible&quot; buyers appear. For a complete list of supported
      *                                     marketplaces, see Negotiation API requirements and restrictions.
      *
-     * @return SendOfferToInterestedBuyersCollectionResponse
+     * @return SendOfferToInterestedBuyersCollectionResponse|UnexpectedResponse
      */
-    public function sendToInterestedBuyers(CreateOffersRequest $Model, array $headers = []): SendOfferToInterestedBuyersCollectionResponse
+    public function sendToInterestedBuyers(CreateOffersRequest $Model, array $headers = [])
     {
         return $this->request(
         'sendOfferToInterestedBuyers',
